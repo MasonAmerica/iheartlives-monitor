@@ -1,0 +1,9 @@
+rootProject.name = 'iHeartLivesMonitor'
+include ':react-native-version-number'
+project(':react-native-version-number').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-version-number/android')
+include ':react-native-android-settings-library'
+project(':react-native-android-settings-library').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-android-settings-library/android')
+include ':react-native-open-settings'
+project(':react-native-open-settings').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-open-settings/android')
+
+include ':app'
