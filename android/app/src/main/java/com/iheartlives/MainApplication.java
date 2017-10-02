@@ -1,4 +1,4 @@
-package com.iheartlivesmonitor;
+package com.iheartlives.monitor;
 
 import android.app.Application;
 

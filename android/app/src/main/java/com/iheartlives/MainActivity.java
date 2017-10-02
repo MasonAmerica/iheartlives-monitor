@@ -1,4 +1,4 @@
-package com.iheartlivesmonitor;
+package com.iheartlives.monitor;
 import com.facebook.react.ReactActivity;
 
 public class MainActivity extends ReactActivity {
