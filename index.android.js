@@ -51,7 +51,7 @@ export default class iHeartLivesMonitor extends Component {
     return (
       <View style={styles.container}>
         <StatusBar
-         backgroundColor="#C2185B"
+         backgroundColor="#2196F3"
          barStyle="light-content"
        />
         <ToolbarAndroid title="Monitor"
@@ -130,13 +130,13 @@ const styles = StyleSheet.create({
   },
   average: {
     textAlign: 'center',
-    color: '#333333',
+    color: '#03A9F4',
     marginTop: 20,
     fontSize: 20,
     fontStyle: 'italic'
   },
   toolbar: {
-    backgroundColor: '#E91E63',
+    backgroundColor: '#03A9F4',
     height: 56,
     alignSelf: 'stretch'
   },
