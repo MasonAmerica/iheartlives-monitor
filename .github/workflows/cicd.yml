@@ -22,16 +22,14 @@ jobs:
       - name: Install npm dependencies
         run: |
           npm install
-      - name: Install platform-tools (build error on 30.0.3)
-        run: |
-          wget --output-document sdk-tools-linux.zip https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
-          unzip sdk-tools-linux.zip
-          echo 'y' | ./tools/bin/sdkmanager --install 'platform-tools'
-      - name: Build Android Release
+      - name: Decrypt keystore
         env:
           ENCRYPT_PASSWORD: ${{ secrets.ENCRYPT_PASSWORD }}
         run: |
-          cd android && gpg --quiet --batch --yes --decrypt --passphrase="$ENCRYPT_PASSWORD" --output ./app/my-release-key.keystore ./app/my-release-key.keystore.gpg && ./gradlew clean && ./gradlew assembleRelease
+          gpg --quiet --batch --yes --decrypt --passphrase="$ENCRYPT_PASSWORD" --output ./android/app/my-release-key.keystore ./android/app/my-release-key.keystore.gpg
+      - name: Build Android Release
+        run: |
+          cd android && ./gradlew assembleRelease -x lintVitalRelease
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
