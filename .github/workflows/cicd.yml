@@ -28,6 +28,11 @@ jobs:
         run: |
           gpg --quiet --batch --yes --decrypt --passphrase="$ENCRYPT_PASSWORD" --output ./android/app/my-release-key.keystore ./android/app/my-release-key.keystore.gpg
       - name: Build Android Release
+        env:
+          KEYSTORE: ${{ secrets.KEYSTORE }}
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
         run: |
           cd android && ./gradlew assembleRelease -x lintVitalRelease
       - name: Upload Artifact
