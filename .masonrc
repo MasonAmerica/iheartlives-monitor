@@ -1,0 +1,6 @@
+{
+  "configs": "mason.yml",
+  "apps": [
+    "android/app/build/outputs/apk"
+  ]
+}

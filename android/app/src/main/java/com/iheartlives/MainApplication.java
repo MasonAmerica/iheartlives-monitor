@@ -13,6 +13,7 @@ import com.facebook.soloader.SoLoader;
 
 import java.util.Arrays;
 import java.util.List;
+// import com.iheartlives.monitor.PowerButtonHoldReceiver;
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -29,6 +30,8 @@ public class MainApplication extends Application implements ReactApplication {
             new RNVersionNumberPackage(),
             new RNANAndroidSettingsLibraryPackage(),
             new OpenSettingsPackage()
+            // ,
+            // new PowerButtonHoldReceiver()
       );
     }
   };
