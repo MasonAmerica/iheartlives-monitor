@@ -111,6 +111,12 @@ android {
                keyAlias MYAPP_RELEASE_KEY_ALIAS
                keyPassword MYAPP_RELEASE_KEY_PASSWORD
            }
+           if (System.getenv("KEYSTORE")) {
+               storeFile file(System.getenv("KEYSTORE"))
+               storePassword System.getenv("KEYSTORE_PASSWORD")
+               keyAlias System.getenv("KEY_ALIAS")
+               keyPassword System.getenv("KEY_PASSWORD")
+           }
        }
    }
     splits {
