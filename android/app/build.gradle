@@ -166,7 +166,10 @@ task copyDownloadableDepsToLibs(type: Copy) {
 }
 
 task('increaseVersionCode') << {
-    def versionCode = Integer.parseInt(VERSION_CODE) + 1
+    def versionCode = Integer.parseInt(VERSION_CODE) + 1; 
+    if (System.getenv("GITHUB_RUN_NUMBER")) {
+        versionCode = System.getenv("GITHUB_RUN_NUMBER")
+    }
     ant.propertyfile(file: "../gradle.properties") {
         entry(key: "VERSION_CODE", value: versionCode)
     }
