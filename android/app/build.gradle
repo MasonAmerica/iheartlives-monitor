@@ -91,14 +91,14 @@ def enableProguardInReleaseBuilds = false
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.1"
+    buildToolsVersion "29.0.2"
 
     defaultConfig {
         applicationId "com.iheartlives.monitor"
         minSdkVersion 16
         targetSdkVersion 22
-        versionCode 56
-        versionName "0.5.6"
+        versionCode Integer.parseInt(VERSION_CODE)
+        versionName VERSION_NAME
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
@@ -163,4 +163,17 @@ dependencies {
 task copyDownloadableDepsToLibs(type: Copy) {
     from configurations.compile
     into 'libs'
+}
+
+task('increaseVersionCode') << {
+    def versionCode = Integer.parseInt(VERSION_CODE) + 1
+    ant.propertyfile(file: "../gradle.properties") {
+        entry(key: "VERSION_CODE", value: versionCode)
+    }
+}
+
+tasks.whenTaskAdded { task ->
+    if (task.name == 'generateReleaseBuildConfig') {
+        task.dependsOn 'increaseVersionCode'
+    }
 }

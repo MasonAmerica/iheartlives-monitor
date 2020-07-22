@@ -53,3 +53,4 @@ fastlane/Preview.html
 fastlane/screenshots
 demoConfigs/
 py3env/
+.vscode/
