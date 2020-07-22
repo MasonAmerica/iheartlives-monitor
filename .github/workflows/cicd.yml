@@ -60,7 +60,7 @@ jobs:
           MASON_USERNAME: ${{ secrets.MASON_USERNAME }}
           MASON_PASSWORD: ${{ secrets.MASON_PASSWORD }}
       - name: Register Mason project
-        run: ./mason register project
+        run: ./mason register -y project
       - name: Deploy Mason
         run: |
-          ./mason deploy --push config iheartlives-hd latest dev
+          ./mason deploy -py config iheartlives-hd latest dev
