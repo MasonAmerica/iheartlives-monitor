@@ -89,6 +89,18 @@ def enableSeparateBuildPerCPUArchitecture = false
  */
 def enableProguardInReleaseBuilds = false
 
+ext.getVersionCode =  { ->
+    def (major,minor,patch) = [Integer.parseInt(VERSION_MAJOR), 
+                               Integer.parseInt(VERSION_MINOR), 
+                               Integer.parseInt(VERSION_PATCH)]
+    if (System.getenv("GITHUB_RUN_NUMBER")) {
+        patch = Integer.parseInt(System.getenv("GITHUB_RUN_NUMBER"))
+    }
+    major * 10000 + minor * 100 + patch
+}
+
+ext.getVersionName = { -> "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}" }
+
 android {
     compileSdkVersion 23
     buildToolsVersion "29.0.2"
@@ -97,8 +109,8 @@ android {
         applicationId "com.iheartlives.monitor"
         minSdkVersion 16
         targetSdkVersion 22
-        versionCode Integer.parseInt(VERSION_CODE)
-        versionName VERSION_NAME
+        versionCode project.getVersionCode()
+        versionName project.getVersionName()
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
@@ -163,20 +175,4 @@ dependencies {
 task copyDownloadableDepsToLibs(type: Copy) {
     from configurations.compile
     into 'libs'
-}
-
-task('increaseVersionCode') << {
-    def versionCode = Integer.parseInt(VERSION_CODE) + 1; 
-    if (System.getenv("GITHUB_RUN_NUMBER")) {
-        versionCode = System.getenv("GITHUB_RUN_NUMBER")
-    }
-    ant.propertyfile(file: "../gradle.properties") {
-        entry(key: "VERSION_CODE", value: versionCode)
-    }
-}
-
-tasks.whenTaskAdded { task ->
-    if (task.name == 'generateReleaseBuildConfig') {
-        task.dependsOn 'increaseVersionCode'
-    }
 }
