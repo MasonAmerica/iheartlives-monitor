@@ -97,8 +97,8 @@ android {
         applicationId "com.iheartlives.monitor"
         minSdkVersion 16
         targetSdkVersion 22
-        versionCode 55
-        versionName "0.5.5"
+        versionCode 56
+        versionName "0.5.6"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
