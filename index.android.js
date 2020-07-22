@@ -41,7 +41,7 @@ export default class iHeartLivesMonitor extends Component {
       this.setState({heartrate: Math.floor(Math.random() * (max - min)) + min})
     }, 1000)
 
-    console.log("hello example!");
+    console.log("hello kayentis!");
 
   }
 
