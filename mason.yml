@@ -31,7 +31,3 @@ apps:
   - name: com.iheartlives.monitor
     package_name: com.iheartlives.monitor
     version_code: latest
-media:
-  bootanimation:
-    name: example-boot
-    version: 4

@@ -14,7 +14,7 @@ jobs:
       - name: Run tests
         run: |
           npm test
-  build-android:
+  build:
     needs: install-and-test
     runs-on: ubuntu-latest
     steps: 
@@ -40,3 +40,27 @@ jobs:
         with:
           name: app-release.apk
           path: android/app/build/outputs/apk
+  deploy_mason_dev:
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Download outputs
+        uses: actions/download-artifact@v1
+        with:
+          name: outputs
+          path: android/app/build/outputs/apk
+      - name: Prep CLI
+        run: |
+          curl -Lo mason https://github.com/MasonAmerica/mason-cli/releases/download/1.7/mason-linux
+          chmod +x mason
+          ./mason login -u $MASON_USERNAME -p $MASON_PASSWORD
+        env:
+          MASON_USERNAME: ${{ secrets.MASON_USERNAME }}
+          MASON_PASSWORD: ${{ secrets.MASON_PASSWORD }}
+      - name: Register Mason project
+        run: ./mason register project
+      - name: Deploy Mason
+        run: |
+          ./mason deploy --push config iheartlives-hd latest dev
