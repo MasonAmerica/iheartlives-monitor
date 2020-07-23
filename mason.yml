@@ -6,7 +6,6 @@ os:
       config_sms_capable: false
       config_cameraDoubleTapPowerGestureEnabled: false
       config_supportAutoRotation: false
-      config_longPressOnPowerBehavior: 100
     mason-management:
       direct_boot_package: com.iheartlives.monitor
       disable_keyguard: true
