@@ -8,7 +8,7 @@ os:
       config_supportAutoRotation: false
       config_longPressOnPowerBehavior: 100
     mason-management:
-       direct_boot_package: com.iheartlives.monitor
+      direct_boot_package: com.iheartlives.monitor
       disable_keyguard: true
       disable_status_bar: false
       disable_camera: true
@@ -22,9 +22,9 @@ os:
       config_allow_download_over_metered: true
       config_show_download_in_downloads_ui: true
       config_show_download_progress_as_notification: true
-     settings:
-       config_default_tile_list:
-         - wifi
+    settings:
+      config_default_tile_list:
+        - wifi
     systemui:
       quick_settings_tiles_default: 'wifi,airplane'
 apps:
