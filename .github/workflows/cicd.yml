@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - production
+      - signal
 jobs:
   install-and-test:
     runs-on: ubuntu-latest
